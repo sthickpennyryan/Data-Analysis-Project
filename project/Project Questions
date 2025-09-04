@@ -1,1 +1,47 @@
 
+#Is there a correlation between suicide rates and GDP per capita or gross national income per capita?
+#How does the suicide rate change over time within different age groups?
+#What is the relationship between suicide rates and specific age groups or generations?
+#How does the employment population ratio correlate with suicide rates?
+
+
+
+'''Questions posed at the beginning'''
+'''Is there a correlation between suicide rates and GDP per capita?
+-There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak, 
+if at all there.'''
+'Is there a correlation between suicide rates and GDP per capita?\n-There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak, \nif at all there.'
+#How does the suicide rate change over time within different age groups?
+suicides_by_generation = df.groupby(['AgeGroup', 'Year'])['SuicideCount'].sum().sort_values(ascending=False).reset_index()
+suicide_rate = df.groupby(['AgeGroup', 'Year'])['DeathRatePer100K'].mean().sort_values(ascending=False).reset_index()
+
+
+'''
+[0] shows consistant suicide rages for agegroups, other than in the 35-54 where they peak more rapidly than other groups. However, the downward
+incline at the end may be representative of incomplete data. 
+
+[1] shows a decrease in suicides per 100k in all age groups until around 2020 where there is a slight increase.
+Could add in gender to see if the trend continues but overall it does show that while the suicide total per year is somewhere consistant
+across age groups. The death by suicide in general population is decreasing, suggesting stagnation of suicide rates while population increases across 
+all age groups.
+'''
+
+
+#the heat map shows a -0.07 correlation between suicides per 100k and employmentpopulation ratio. Suggestings a weak negative correlation.
+#Meaning that as that ratio of employement increases, suicide decreases, slightly. 
+#i want to change this to a barchart correlation
+
+
+
+#understanding the data.
+''' Weak to no relationship between Gross national, GDP, GDP per capita, GNI Per Capita as they sit around 0.
+Or slightly above/below.
+Two factors show a stronger relationship than other factors, however, weak in terms of correlation.
+Inflation rate is around 0.05 suggesting, if at all, a weak relationship between higher inflation rates 
+and suicide rates.
+The strongest negative correlation comes ata Employment ratio vs Suicide Rates. Suggesting a weak relationship
+between higher employment rates and lower suicide rates and it's converse. 
+
+The direction of these correlations, while expected are too low to identify any relationship and therefore it
+cannot be concluded that there are any strong or negative relationships between the factors listed below and
+their effect on suicide rates.
