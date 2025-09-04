@@ -1,9 +1,25 @@
-As part of a data analytics with python course, I was tasked with tasked with sourcing a dataset
+The dataset for this project was sourced from Kaggle but the originanl post is no longer available. Find the related source file under 'data_file'.
 
 
-This dataset was taken from https://www.kaggle.com/code/ronaldonyango/suicide-rates-analysis. That link also has a notebook that provides various analysis. 
+Task - To find an unclean data set and perform the following actions:
+      Importing Data
+      
+      Data Cleansing:
+      Remove NULL values
+      Drop duplicate rows
+
+      Data normalisation:
+
+
+      Analysis:
+      
+  
+      
+---- compare with workbook, see what I did, explain why, what were the goals/questions into a different document I believe
+
+
 At points, I have taken code from that analysis. However, it was not directly copied. I used it as a way to learn, played with each feature to ensure I understand what I did before implimenting it. 
 I am new to utilising python for cleaning and analysis so attempting myself while having a notebook to look at and use as a guide was very helpful and aided my understanding greatly.
 
-This is a practise run at data cleaning and visualisation for suicide rates over population, gender, age and various other factors.
-Comments throughout are my thoughts and points where I've had to learn along with some analysis.
+
+
