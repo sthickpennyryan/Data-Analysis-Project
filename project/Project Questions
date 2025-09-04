@@ -1,39 +1,80 @@
+Project Questions:
+1) Is there a correlation between suicide rates and GDP per capita or gross national income per capita?
+2) How does the suicide rate compare across age groups? 
+3) What is the relationship between suicide rates and specific age groups or generations?
+4) How does the employment population ratio correlate with suicide rates?
 
-#Is there a correlation between suicide rates and GDP per capita or gross national income per capita?
-#How does the suicide rate change over time within different age groups?
-#What is the relationship between suicide rates and specific age groups or generations?
-#How does the employment population ratio correlate with suicide rates?
+-----------------------------------------------
+1) Is there a correlation between suicide rates and GDP per capita?
+-There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak and not sigificant, 
+if at all there.
 
-
-
-'''Questions posed at the beginning'''
-'''Is there a correlation between suicide rates and GDP per capita?
--There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak, 
-if at all there.'''
-'Is there a correlation between suicide rates and GDP per capita?\n-There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak, \nif at all there.'
-#How does the suicide rate change over time within different age groups?
-suicides_by_generation = df.groupby(['AgeGroup', 'Year'])['SuicideCount'].sum().sort_values(ascending=False).reset_index()
-suicide_rate = df.groupby(['AgeGroup', 'Year'])['DeathRatePer100K'].mean().sort_values(ascending=False).reset_index()
+Is there a correlation between suicide rates and GDP per capita?
+  There is a correlation of 0.0063 between suicide rates per 100k and the GDP per capita. As this is very close to 0, the correlation is very weak, \nif at all there.'
 
 
-'''
-[0] shows consistant suicide rages for agegroups, other than in the 35-54 where they peak more rapidly than other groups. However, the downward
+-----------------------------------------------
+2) How does the suicide rate compare across age groups? 
+  Code for Bar Chart comparing suicide rates:
+                    suicides_by_generation = df.groupby(['AgeGroup', 'Year'])['SuicideCount'].sum().sort_values(ascending=False).reset_index()
+                    suicide_rate = df.groupby(['AgeGroup', 'Year'])['DeathRatePer100K'].mean().sort_values(ascending=False).reset_index()
+                    
+                    fig,ax = plt.subplots(nrows=1, ncols=2, figsize=(16,6))
+                    
+                    sns.lineplot(x='Year', y='SuicideCount', 
+                                data=suicides_by_generation, 
+                                ax=ax[0], 
+                                hue='AgeGroup')
+                    ax[0].set_title('Suicide amounts by age Group')
+                    ax[0].set_ylabel('Suicide Totals per Year')
+                    
+                    
+                    sns.lineplot(x='Year', y='DeathRatePer100K', 
+                                data=suicide_rate, ax=ax[1],
+                                hue='AgeGroup')
+                    ax[1].set_title('Deaths by suicide per 100k over age groups')
+                    ax[1].set_ylabel('Suicides per 100k')
+
+
+[0] Shows consistant suicide rages for agegroups, other than in the 35-54 where they peak more rapidly than other groups. However, the downward
 incline at the end may be representative of incomplete data. 
 
 [1] shows a decrease in suicides per 100k in all age groups until around 2020 where there is a slight increase.
-Could add in gender to see if the trend continues but overall it does show that while the suicide total per year is somewhere consistant
-across age groups. The death by suicide in general population is decreasing, suggesting stagnation of suicide rates while population increases across 
+The death by suicide in general population is decreasing, suggesting stagnation of suicide rates while population increases across 
 all age groups.
-'''
+-----------------------------------------------
 
+3) What is the relationship between suicide rates and specific age groups or generations?
 
-#the heat map shows a -0.07 correlation between suicides per 100k and employmentpopulation ratio. Suggestings a weak negative correlation.
-#Meaning that as that ratio of employement increases, suicide decreases, slightly. 
-#i want to change this to a barchart correlation
+      Code: Comparing total suicides per generation vs suicides per 100000 populus.
 
+                      suicides_by_generation = df.groupby(['Generation', 'Sex'])['SuicideCount'].sum().sort_values(ascending=False).reset_index()
+                      suicide_rate = df.groupby(['Generation', 'Sex'])['DeathRatePer100K'].mean().sort_values(ascending=False).reset_index()
+                      
+                      fig,ax = plt.subplots(nrows=1, ncols=2, figsize=(24,8))
+                                
+                      sns.barplot(x='Generation', y='SuicideCount', 
+                      data=suicides_by_generation, ax=ax[0], 
+                      edgecolor='black', errorbar=None
+                                 )
+                      ax[0].set_title('Total Suicides organised by Generation')
+                      ax[0].set_ylabel('Total suicides, in millions')
+                      #should note the dataset goes 1990-2020 so 30 years worth.
+                      
+                      sns.barplot(x='Generation', y='DeathRatePer100K', 
+                      data=suicide_rate, ax=ax[1],
+                      edgecolor='black', errorbar=None
+                                 )
+                      ax[1].set_title('Suicide rates for each generation per 100k recorded deaths')
+                      ax[1].set_ylabel('Number of suicides, per 100k deaths ')
 
+''' Bar charts show the total suicides across each generation and suicide rates per generator in a 100k sample.'''
+''' These indicate that, overall, generation x, followed by baby boomers have the highest amount of suicide. However, if you look at per 100k deaths, '''
+''' it highlights that the silent generation, followed by baby boomers are more likely to commit suicide.'''
 
-#understanding the data.
+-----------------------------------------------
+4) How does the employment population ratio correlate with suicide rates?
+
 ''' Weak to no relationship between Gross national, GDP, GDP per capita, GNI Per Capita as they sit around 0.
 Or slightly above/below.
 Two factors show a stronger relationship than other factors, however, weak in terms of correlation.
